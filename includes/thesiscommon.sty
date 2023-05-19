@@ -1,0 +1,178 @@
+% swap \phi (φ) and \varphi (ϕ)
+\let\phi\varphi
+\let\varphi\temp
+
+\usepackage{environ}
+\NewEnviron{centerframebox}{\begin{center}\fbox{\parbox{0.92\textwidth}{\BODY}}\end{center}}
+
+\usepackage[pscoord]{eso-pic} % The zero point of the coordinate system is the lower left corner of the page (the default).
+\newcommand{\placetextbox}[3]{ % \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \setbox0=\vbox{#3} % Put <stuff> in a box
+  \AddToShipoutPictureFG*{ % Add <stuff> to current page foreground
+    \put(\LenToUnit{#1\paperwidth},\LenToUnit{#2\paperheight}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
+  }
+}
+
+\newcommand{\cmd}[1]{<<\texttt{#1}>>}
+
+\newcommand{\CRTprintbibliography}{
+  \clearpage % Original \printbibliography doesn't end page
+  \section{Список использованных источников}
+  \begin{sloppypar} % Prevents overfull in bibliography
+  \printbibliography[heading=none]
+  \end{sloppypar}
+  % \section{Список использованной литературы}
+  % \addcontentsline{toc}{section}{Список использованных источников}
+}
+
+\newcommand{\CRTsignPDP}{
+  \placetextbox{0.7}{0.43}{\includegraphics[width=3cm]{подпись.png}}
+  \placetextbox{0.68}{0.405}{22\hspace{1cm}апреля}
+  %
+  \placetextbox{0.75}{0.28}{\includegraphics{подписьнаучника.png}}
+  \placetextbox{0.26}{0.25}{25 апреля}
+  \placetextbox{0.50}{0.25}{10}
+}
+
+\newcommand{\CRTsignDOC}{
+  \placetextbox{0.75}{0.21}{\includegraphics[width=3cm]{подпись.png}}
+  \placetextbox{0.68}{0.182}{18\hspace{1cm}мая}
+  % \placetextbox{0.25}{0.68}{\includegraphics{подписьнаучника.png}}
+  \placetextbox{0.26}{0.63}{18\hspace{1cm}мая}
+}
+
+\newcommand{\CRTsign}{
+  \placetextbox{0.70}{0.23}{\includegraphics[width=3cm]{подпись.png}}
+  \placetextbox{0.67}{0.202}{18\hspace{1cm}мая}
+  % \placetextbox{0.25}{0.61}{\includegraphics{подписьнаучника.png}}
+  \placetextbox{0.265}{0.565}{18\hspace{1cm}мая}
+}
+
+\addbibresource{parts/refs.bib}
+
+\lstset{
+  keywordstyle=\color{blue},
+  basicstyle=\ttfamily,
+  stringstyle=\color{ForestGreen},
+  commentstyle=\color{gray},
+  ndkeywordstyle={\color{orange}},
+  identifierstyle=\color{black},
+  numbers=none,
+  language=c,
+  captionpos=b,
+  showstringspaces=false,
+  frame=L,
+  framesep=5pt,
+  xleftmargin=12.5mm,
+  extendedchars=false,
+  inputencoding=utf8
+}
+
+\graphicspath{{./}{../}{./images/}}
+\sloppy
+
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{positioning}
+
+\newcommand{\CRTname}{Разработка расширений компилятора C для поддержания процедурно-параметрического программирования}
+\ifsmallfile
+  \title{\CRTname}
+  \author{Студент группы БПИ 196}{К. Н. Борисов}
+  \academicTeacher{Доктор технических наук, Профессор департамента программной инженерии}{А. И. Легалов}
+
+  \documentTitle{Техническое задание}
+  \documentCode{RU.17701729.04.01-01 ТЗ 01-1}
+
+  \usepackage{syntax}
+  \usepackage{accsupp}
+  \usepackage{amsmath}
+
+  \usepackage{expl3}
+  \ExplSyntaxOn
+  \cs_new_eq:NN \Repeat \prg_replicate:nn
+  \ExplSyntaxOff
+
+  \newcommand{\term}[2][]{\item[] \textbf{#1}~-- #2.}
+  \newenvironment{terminologyList}{
+    \begin{itemize}[leftmargin=0pt, itemindent=\parindent]
+  }{\end{itemize}}
+\fi
+
+\newcommand{\CRTlistRegistration}{
+  \singlespacing
+  \newpage
+  \newgeometry{left=20mm,bottom=15mm,right=10mm,top=20mm}
+  \cfoot{}
+  \titleformat{\section}{\normalfont\Large\bfseries\filcenter}{\thesection}{1em}{}
+  \section{Лист регистрации изменений}
+  \noindent
+  \BeginAccSupp{ActualText=}
+  \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|P{2.00cm}|P{1.75cm}|l|P{2.00cm}|P{2.50cm}|P{2.00cm}|P{2.75cm}|P{1.75cm}|c|}
+      \hline
+      \multirow{2}{*}{Изм.} &
+      \multicolumn{4}{c|}{Номера листов} &
+      \multirow{2}{2.50cm}{Всего листов в документе} &
+      \multirow{2}{2.00cm}{$\text{№}$ документа} &
+      \multirow{2}{2.75cm}{Входящий $\text{№}$ сопроводит. докум. и дата} &
+      \multirow{2}{1.75cm}{Под\-пись} &
+      \multirow{2}{*}{Дата} \\ \cline{2-5}
+
+      &из\-ме\-нен\-ных&заме\-нен\-ных&но\-вых&аннул\-лиро\-ван\-ных&  &  &  &  & \\[3ex]
+
+      \Repeat{27}{
+        \hline
+        & & & & & & & & & \\[0.5cm]
+      }
+      \hline
+    \end{tabular}%
+  }
+  \EndAccSupp{}
+  \restoregeometry
+}
+
+\newcommand{\CRTpreamble}{
+  \maketitle
+
+  \tableofcontents
+  \clearpage
+  \phantomsection
+  \section*{Используемые определения и термины}
+  \addcontentsline{toc}{section}{Используемые определения и термины}
+  \input{parts/terminology}
+}
+
+\usepackage[export]{adjustbox}
+\newcommand{\CRTfigure}[2]{%
+  \begin{figure}[ht!]
+    \centering
+    \includegraphics[max width=\textwidth]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}%
+}
+
+\newcommand{\CRTfigref}[2]{%
+  (см. Рис. \ref{fig:#1})%
+  \@ifundefined{CRTlabeldef@fig:#1}{%
+    \expandafter\xdef\csname CRTlabeldef@fig:#1\endcsname{\relax}%
+    \CRTfigure{#1}{#2}%
+  }{}%
+}
+
+\usepackage[verbose]{newunicodechar}
+\newunicodechar{╶}{\color{ForestGreen}\textbackslash{}u2576}
+\newunicodechar{╴}{\color{ForestGreen}\textbackslash{}u2574}
+\newunicodechar{─}{\color{ForestGreen}\textbackslash{}u2500}
+\newunicodechar{╷}{\color{ForestGreen}\textbackslash{}u2577}
+\newunicodechar{┌}{\color{ForestGreen}\textbackslash{}u250c}
+\newunicodechar{┐}{\color{ForestGreen}\textbackslash{}u2510}
+\newunicodechar{┬}{\color{ForestGreen}\textbackslash{}u252c}
+\newunicodechar{╵}{\color{ForestGreen}\textbackslash{}u2575}
+\newunicodechar{└}{\color{ForestGreen}\textbackslash{}u2514}
+\newunicodechar{┘}{\color{ForestGreen}\textbackslash{}u2518}
+\newunicodechar{┴}{\color{ForestGreen}\textbackslash{}u2534}
+\newunicodechar{│}{\color{ForestGreen}\textbackslash{}u2502}
+\newunicodechar{├}{\color{ForestGreen}\textbackslash{}u251c}
+\newunicodechar{┤}{\color{ForestGreen}\textbackslash{}u2524}
+\newunicodechar{┼}{\color{ForestGreen}\textbackslash{}u253c}

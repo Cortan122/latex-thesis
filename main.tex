@@ -1,0 +1,51 @@
+\documentclass{includes/Thesis}
+
+\newif\ifsmallfile
+\usepackage{includes/thesiscommon}
+
+\begin{document}
+\CRTsign
+\begin{thesis}[
+  title = Разработка расширений компилятора C для поддержания процедурно-параметрического программирования,
+  year = 2023,
+  %
+  authorGroup = БПИ196,
+  authorName = К. Н. Борисов,
+  %
+  academicTeacherTitle = {Профессор департамента программной инженерии, Доктор технических наук},
+  academicTeacherName = А. И. Легалов,
+  academicTeacherFullName = Легалов Александр Иванович,
+  %
+  isAcademic,
+  UDC = 004.4'427,
+  %
+  keywordsRu = компилятор; язык С; парадигма; процедурно-параметриче\-ская; синтаксис; полиморфизм,
+  keywordsEn = compiler; C language; paradigm; procedural-parametric; syntax; polymorphism,
+  %
+  % useSimpleTitlePage
+]
+  \startlist{toc}
+  \setAbstractResource{parts/abstract-ru}{parts/abstract-en}
+
+  \setTerminologyResource{parts/terminology}
+
+  \setIntroResource{parts/intro}
+
+  % TODO: rename chapter
+  % Обзор существующих решений и выбор методов решения задач
+  \addChapter{Выбор подхода к решению задачи}{parts/chapter1}
+  \addChapter{Принципы разработки и архитектурные особенности}{parts/chapter2}
+  \addChapter{Технологии и программная реализация}{parts/chapter3}
+
+  \setConclusionResource{parts/conclusion}
+
+  \makeatletter
+  \@ifundefined{CRTDisableAllAdditions}{
+    \addAppendix{Техническое задание}{parts/tz}
+    \addAppendix{Программа и методика испытаний}{parts/pmi}
+    \addAppendix{Руководство оператора}{parts/ro}
+    \addAppendix{Текст программы}{parts/tp}
+  }{}\makeatother
+
+\end{thesis}
+\end{document}

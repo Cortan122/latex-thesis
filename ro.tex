@@ -1,0 +1,19 @@
+\PassOptionsToPackage{main=russian,english}{babel}
+\documentclass{includes/TechDoc}
+
+\newif\ifsmallfile
+\smallfiletrue
+\usepackage{includes/thesiscommon}
+
+\documentTitle{Руководство оператора}
+\documentCode{RU.17701729.04.01-01 РО 01-1}
+
+\begin{document}
+  \CRTsignDOC
+  \maketitle
+  \tableofcontents
+  \input{parts/ro}
+
+  % \CRTprintbibliography
+  \CRTlistRegistration
+\end{document}

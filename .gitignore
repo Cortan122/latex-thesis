@@ -1,0 +1,16 @@
+*.pdf
+indent.log
+*.log
+*.aux
+*.toc
+*.atfi
+*.out
+*.pytxcode
+*.bbl
+*.bcf
+*.blg
+*.ptc
+*.run.xml
+
+.vscode/
+*подпись*

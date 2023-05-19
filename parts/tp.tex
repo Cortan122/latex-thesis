@@ -1,0 +1,52 @@
+\newcommand{\CRTfile}[1]{
+  \subsection{Файл #1}
+  \def\crttempmacroparameter{./ppp-compiler/src/#1}
+  \lstinputlisting[language=c, caption={}, frame={}, xleftmargin=0pt]{\crttempmacroparameter}
+}
+
+\newcommand{\CRTfileexample}[2]{
+  \subsection{#2 #1}
+  \def\crttempmacroparameter{./ppp-compiler/example/#1}
+  \lstinputlisting[language=c, caption={}, frame={}, xleftmargin=0pt]{\crttempmacroparameter}
+}
+
+\newcommand{\CRTfiletest}[2]{
+  \subsection{#2 #1}
+  \def\crttempmacroparameter{./ppp-compiler/test inputs/#1}
+  \lstinputlisting[language=c, caption={}, frame={}, xleftmargin=0pt]{\crttempmacroparameter}
+}
+
+\section{Заголовочные файлы}
+\CRTfile{token.h}
+\CRTfile{lexer.h}
+\CRTfile{declaration.h}
+\CRTfile{parser.h}
+
+\section{Файлы исходного кода}
+\CRTfile{declaration.c}
+\CRTfile{lexer.c}
+\CRTfile{token.c}
+\CRTfile{parser.c}
+\CRTfile{main.c}
+\CRTfile{wrapper.c}
+\CRTfile{test.c}
+
+\section{Файлы сборки}
+\subsection{Файл makefile}
+\lstinputlisting[language=make, caption={}, frame={}, xleftmargin=0pt]{./ppp-compiler/makefile}
+
+\subsection{Файл build\_example.sh}
+\lstinputlisting[language=bash, caption={}, frame={}, xleftmargin=0pt]{./ppp-compiler/build\_example.sh}
+
+\section{Пример многофайловой программы на разработанном языке}
+\CRTfileexample{lines.h}{Заголовочный файл}
+\CRTfileexample{circle.h}{Заголовочный файл}
+
+\CRTfileexample{lines.c}{Файл исходного кода}
+\CRTfileexample{circle.c}{Файл исходного кода}
+\CRTfileexample{main.c}{Файл исходного кода}
+
+\section{Дополнительные примеры программ}
+\CRTfiletest{example\_lines.c}{Программа}
+\CRTfiletest{example\_roots\_notypedefs.c}{Программа}
+\CRTfiletest{example\_multimethod.c}{Фрагмент}

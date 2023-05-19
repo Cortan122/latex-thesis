@@ -1,0 +1,19 @@
+\PassOptionsToPackage{main=russian,english}{babel}
+\documentclass{includes/TechDoc}
+
+\newif\ifsmallfile
+\smallfiletrue
+\usepackage{includes/thesiscommon}
+
+\documentTitle{Текст программы}
+\documentCode{RU.17701729.04.01-01 ТП 01-1}
+
+\begin{document}
+  \CRTsignDOC
+  \maketitle
+  \tableofcontents
+  \input{parts/tp}
+
+  % \CRTprintbibliography
+  \CRTlistRegistration
+\end{document}
